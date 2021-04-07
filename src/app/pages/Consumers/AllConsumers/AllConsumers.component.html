@@ -1,0 +1,59 @@
+
+
+    <div class="row">
+      <div class="col-sm-12">
+<!-- Hover table card start -->
+<app-card [title]="'All Consumers'" [classHeader]="true" [blockClass]="'table-border-style'">
+  <span class="code-header"><code>All Consumers</code></span>
+  <div class="row">
+    <div class="col-sm-11" >
+       <!-- <input type="text" class="form-control" style="float: right;"[(ngModel)]="ConsumerName" (ngModelChange)="SearchProduct()"placeholder="Enter Barcode to search" >
+           -->
+        
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th (click)="Sort('id')">#<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('consumer_Name')"> Name<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('email')">Email<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('mobile_Number')">Contact No<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('refferedBy')">Refered By<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('address')">Address<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('action')">Action<i class="fa fa-sort"></i></th>
+        <!-- <th>Image</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of ConsumerList |orderBy:key :reverse | paginate:{itemsPerPage:10,currentPage:p}; let i=index;" >
+        <td>{{i+1}}</td>
+        <td>{{obj.consumer_Name}}</td>
+        <td>{{obj.email}}</td>
+        <td>{{obj.mobile_Number}}</td>
+        <td>{{obj.refferedBy}}</td>
+        <td>{{obj.address}}</td>
+        <td> <p *ngIf="obj.status" class="btn badge-success">Active</p>
+          <p *ngIf="!obj.status" class="btn badge-danger"> Not Active</p> </td>
+        <td>
+          <h5 (click)="clickFunction(obj.consumer_Id)">
+            <p *ngIf="!obj.status" class="btn badge-success btn-xs">Activate Now</p>  <p *ngIf="obj.status" class="btn badge-danger"> Deactivate Now</p> &nbsp;
+           </h5>
+        </td>
+        <!-- <td>{{products.ProductName}}</td> -->
+
+      </tr>
+      <pagination-controls (pageChange)="p=$event"></pagination-controls>
+      </tbody>
+    </table>
+  </div>
+</app-card>
+<!-- Hover table card end -->
+      </div>
+    </div>
+  
+  
+
+  

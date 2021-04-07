@@ -1,0 +1,99 @@
+
+
+    <div class="row">
+      <div class="col-sm-12">
+<!-- Hover table card start -->
+<app-card [title]="'Resturants'" [classHeader]="true" [blockClass]="'table-border-style'">
+  <span class="code-header"><code>All Resturants</code></span>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+
+        <th (click)="Sort('id')">#<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('kitchen_Name')"> Name   <i class="fa fa-sort"></i></th>
+        <th (click)="Sort('restaurant_Cnic')">CNIC<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('restaurant_mobile')">Contact No<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('restaurant_Email')">Email<i class="fa fa-sort"></i></th>
+       <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('action')">Action<i class="fa fa-sort"></i></th>
+        <th></th>
+        <!-- <th>Image</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of ResturantList |orderBy:key :reverse | paginate:{itemsPerPage:10,currentPage:p}; let i=index;" >
+        <td>{{i+1}}</td>
+        <td>{{obj.kitchen_Name}}</td>
+        <td>{{obj.restaurant_Cnic}}</td>
+        <td>{{obj.restaurant_mobile}}</td>
+        <td>{{obj.restaurant_Email}}</td>
+  
+       <td> 
+        
+        <p *ngIf="obj.status" class="badge-success">Active</p>
+        <p *ngIf="!obj.status" class="badge-danger"> Not Active</p>
+          </td>
+        <td>
+          <h5 (click)="clickFunction(obj.restaurantID)">
+            <p *ngIf="!obj.status" class="btn badge-success btn-xs">Activate Now</p>  <p *ngIf="obj.status" class="btn badge-danger"> Deactivate Now</p> &nbsp;
+           </h5>
+           <a [routerLink]="['resturantreview',obj.restaurantID]">review </a>
+           <button class="btn  badge-default mb-2 mr-2 btn-xs" (click)="openVerticallyCentered(content)"> Detail</button>
+        
+           <ng-template #content let-modal>
+             <div class="modal-header">
+               <h4 class="modal-title">{{obj.kitchen_Name}}</h4>
+            
+             </div>
+             <div class="modal-body">
+               <div class="row">
+                    <div class="col-md-5">
+                          <p>Email</p>
+                    </div>
+                    <div class="col-md-5">
+                             <p>{{obj.restaurant_Email}}</p>
+                   </div>
+               </div>
+               <div class="row">
+                 <div class="col-md-5">
+                       <p>Kitchen Name</p>
+                 </div>
+                 <div class="col-md-5">
+                          <p>{{obj.restaurant_Name}}</p>
+                </div>
+
+
+                 
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                    <p>Contact No</p>
+              </div>
+              <div class="col-md-5">
+                       <p>{{obj.restaurant_mobile}}</p>
+             </div>
+            </div>
+           
+             </div>
+             
+             <div class="modal-footer">
+               <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+             </div>
+           </ng-template>
+        </td>
+      </tr>
+      <pagination-controls (pageChange)="p=$event" ></pagination-controls>
+      </tbody>
+    </table>
+   
+  </div>
+</app-card>
+<!-- Hover table card end -->
+      </div>
+    </div>
+  
+  
+
+  

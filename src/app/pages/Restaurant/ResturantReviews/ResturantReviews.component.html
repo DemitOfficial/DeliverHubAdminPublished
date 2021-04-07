@@ -1,0 +1,13 @@
+
+<div class="timeline" style="    margin-left: -84%;" >
+  
+  <div class="container right" *ngFor="let item of ResturantReviewsList">
+    <div class="content">
+      <p>Order No# {{item.orderNo}}</p>
+      <h1>{{item.consumerName}}</h1>
+      <p>{{item.comment.commments}}</p>
+      <h5 style="margin-left: 84%;">{{item.comment.dateTime | date:'yyyy-MM-dd'}}</h5>
+    </div>
+  </div>
+
+</div>

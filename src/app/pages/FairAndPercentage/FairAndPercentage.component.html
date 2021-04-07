@@ -1,0 +1,446 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="md-tabs">
+      <ngb-tabset style="padding-left: 50%;"> 
+        <ngb-tab title="Store Delivery Fair">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- personal card start -->
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Store Delivery Fair</h5>
+               
+                </div>
+                <div class="card-body">
+                  <div class="view-info" *ngIf="storeform">
+                    <div class="row">
+                     
+                            <!-- Basic table card start -->
+                            <div class="col-sm-6" >
+                            <app-card [title]="'Delivery Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px;"> 
+                                <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="storedeliveryupdate()">
+                              <i class="icofont {{ editProfileIcon }}">delivery</i>
+                            </button>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="general-info">
+                                    <div class="col-sm-12 " >
+                                <div class="table-responsive">
+                                  <table class="table m-0">
+                                    <tbody>
+                                    <tr>
+                                      <th scope="row">Delivery Charges</th>
+                                      <td>{{chargesdata.grocerydelivery?.deliveryCharges}}</td>
+                                    </tr>
+                                    
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end of row -->
+                          </div>
+                          <!-- end of general info -->
+                        </div>
+                            </app-card>
+                            </div>
+                            <div class="col-sm-6" >
+                              <app-card [title]="'Deductions'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                                <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="Storedetuction()">
+                                  <i class="icofont {{ editProfileIcon }}">dection</i>
+                                </button>
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="general-info">
+                                      <div class="col-sm-12 " >
+                                  <div class="table-responsive">
+                                    <table class="table m-0">
+                                      <tbody>
+                                      <tr>
+                                        <th scope="row">Detuction Charges    store dection</th>
+                                        <td>{{chargesdata.grocerydeduction?.percentageAmount}}</td>
+                                      </tr>
+                                      
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end of row -->
+                            </div>
+                            <!-- end of general info -->
+                          </div>
+                              </app-card>
+                              </div>
+                         
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="storedeliveryshow">
+                    <div class="row">
+                     <div class="col-sm-1">
+                       
+                     </div>
+                      <!-- Basic table card start -->
+                      <div class="col-sm-6" >
+                      
+                      
+                          
+                
+                            <form class="needs-validation" novalidate [formGroup]="storedelivery">
+                              <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Delivery Charges </label>
+                     
+                                  <input type="number" class="form-control"  formControlName="deliveryCharges"  required>
+                        
+                                 <br>
+                                    <button style="float: right;" class="btn btn-primary"(click)="Sendstoredelivery()" type="submit">Submit</button>
+                      
+                                </div>
+                        
+                                
+                              </div>
+                              <div class="form-row">
+                             
+                        
+                                
+                              </div>
+                             
+                              </form>
+                       
+                        
+                      <!-- end of row -->
+              
+                 
+                      </div>
+                      <div class="col-sm-1">
+                       
+                      </div>
+                   
+                <!-- end of col-lg-12 -->
+              </div>
+                    <!-- end of row -->
+                  </div>
+                  <div class="edit-info" *ngIf="storedectionshow">
+                    <div class="row">
+                     <div class="col-sm-1">
+                       
+                     </div>
+                      <!-- Basic table card start -->
+                      <div class="col-sm-6" >
+                      
+                      
+                          
+                
+                            <form class="needs-validation" novalidate [formGroup]="Grocerydeductionform">
+                              <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Detuction Charges</label>
+                  
+                                  <input type="number" class="form-control"  formControlName="percentageAmount"  required>
+                                  <br>
+                                  <button style="float: right;" class="btn btn-primary"(click)="storedetuctupdate()" type="submit">Submit</button>
+                             
+                                </div>
+                        
+                                
+                              </div>
+                              <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                 
+                              </div>
+                        
+                                
+                              </div>
+                             
+                              </form>
+                       
+                        
+                      <!-- end of row -->
+              
+                 
+                      </div>
+                      <div class="col-sm-1">
+                       
+                      </div>
+                   
+                <!-- end of col-lg-12 -->
+              </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- personal card end-->
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Restaurant Delivery Fair">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- info card start -->
+               <!-- personal card start -->
+               <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text"> Charges</h5>
+                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" >
+                    <i class="icofont {{ editAboutIcon }}"></i>
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="view-info" *ngIf="storeform">
+                    <div class="row">
+                     
+                            <!-- Basic table card start -->
+                            <div class="col-sm-6" >
+                            <app-card [title]="'Delivery Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                              <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="Restaurantdeliveryshow()">
+                                <i class="icofont {{ editAboutIcon }}"></i>
+                              </button>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="general-info">
+                                    <div class="col-sm-12 " >
+                                <div class="table-responsive">
+                                  <table class="table m-0">
+                                    <tbody>
+                                    <tr>
+                                      <th scope="row">Delivery Charges </th>
+                                      <td>{{chargesdata.restaurantdeduction?.percentageAmount}}</td>
+                                    </tr>
+                                   
+                                    
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end of row -->
+                          </div>
+                          <!-- end of general info -->
+                        </div>
+                            </app-card>
+                            </div>
+                            <div class="col-sm-6" >
+                              <app-card [title]="'Detuction Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                                <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="onclickresaturantpersantage()">
+                                  <i class="icofont {{ editAboutIcon }}"></i>
+                                </button>
+                                <div class="row">
+                                  <div class="col-lg-12">
+                                    <div class="general-info">
+                                      <div class="col-sm-12 " >
+                                  <div class="table-responsive">
+                                    <table class="table m-0">
+                                      <tbody>
+                                      <tr>
+                                        <th scope="row">Detuction Charge</th>
+                                        <td>{{chargesdata.restaurantdelivery?.deliveryCharges}}</td>
+                                      </tr>
+                                     
+                                      
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end of row -->
+                            </div>
+                            <!-- end of general info -->
+                          </div>
+                              </app-card>
+                              </div>
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="restaurantdeliveryshow">
+                    <div class="row">
+                     
+                      <!-- Basic table card start -->
+                      <div class="col-sm-10" >
+                      <app-card [title]="'Update Delivery Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                   
+                        
+                       
+                            <form class="needs-validation" novalidate [formGroup]="restdeliveryform">
+                              <div class="row">
+                                
+                                <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Percentage restaurant delivery</label>
+                                  
+                                  <input type="number" class="form-control"  formControlName="percentageAmount"  required>
+                                  <br>
+                                  <button style="float: right;" class="btn btn-primary"(click)="updaterestaurantdelivery()" type="submit">Submit</button>
+                              
+                                </div>
+                                
+                              </div>
+                            
+                        
+                                
+                          
+                             
+                              </form>
+                        
+                    
+                   
+                      </app-card>
+                      </div>
+                   
+                <!-- end of col-lg-12 -->
+              </div>
+              
+                    <!-- end of row -->
+                  </div>
+                  <div class="edit-info" *ngIf="restaurantdectionshow">
+                    <div class="row">
+                     
+                      <!-- Basic table card start -->
+                      <div class="col-sm-10" >
+                      <app-card [title]="'Update Delivery Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                     
+                        
+                       
+                            <form c novalidate [formGroup]="restdelivery1form">
+                              <div class="row">
+                                
+                                <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Percentage </label>
+                                  
+                                  <input type="number" class="form-control"  formControlName="deliveryCharges"  required>
+                                  <br>
+                                  <button style="float: right;" class="btn btn-primary"(click)="updaterestaurantdeduction()" type="submit">Submit</button>
+                               
+                                </div>
+                                
+                              </div>
+                             
+                             
+                              </form>
+                        
+                    
+                      <!-- end of row -->
+                
+                      </app-card>
+                      </div>
+                   
+                <!-- end of col-lg-12 -->
+              </div>
+              
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- info card end -->
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Local  Delivery Fair">
+          <ng-template ngbTabContent>
+            <div [@fadeInOutTranslate] class="m-t-15">
+              <!-- info card start -->
+               <!-- personal card start -->
+               <div class="card">
+                <div class="card-header">
+                  <h5 class="card-header-text">Delivery Charges</h5>
+                  <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="Restaurantdeliveryshow()">
+                    <i class="icofont {{ editAboutIcon }}"></i>
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div class="view-info" *ngIf="editAbout">
+                    <div class="row">
+                     
+                            <!-- Basic table card start -->
+                            <div class="col-sm-6" >
+                            <app-card [title]="'Delivery Charges'" [classHeader]="true" [blockClass]="'table-border-style'"style="height: 163px;width: 314px; ">
+                              <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right" (click)="Localdeliveryshow()">
+                                <i class="icofont {{ editAboutIcon }}"></i>
+                              </button>
+                              <div class="row">
+                                <div class="col-lg-12">
+                                  <div class="general-info">
+                                    <div class="col-sm-12 " >
+                                <div class="table-responsive">
+                                  <table class="table m-0">
+                                    <tbody>
+                                    <tr>
+                                      <th scope="row">Delivery Charges</th>
+                                      <td>{{chargesdata.localDeliveryfair?.deliveryCharges}}</td>
+                                    </tr>
+                                   
+                                    
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- end of row -->
+                          </div>
+                          <!-- end of general info -->
+                        </div>
+                            </app-card>
+                            </div>
+                        
+                      <!-- end of col-lg-12 -->
+                    </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of view-info -->
+                  <div class="edit-info" *ngIf="Localdelivery">
+                    <div class="row">
+                     
+                      <!-- Basic table card start -->
+                      <div class="col-sm-10" >
+                      <app-card [title]="'Update Delivery Charges'">
+                     
+                        
+                       
+                            <form  novalidate [formGroup]="Localdeliveryform">
+                              <div class="row">
+                                
+                                <div class="col-md-6 mb-3">
+                                  <label for="validationCustom01">Local  dection</label>
+                                  
+                                  <input type="number" class="form-control"  formControlName="deliveryCharges"  required>
+                                  <br>
+                                  <button style="float: right;" class="btn btn-primary"(click)="Localdeliverysubmit()" type="submit">Submit</button>
+                            
+                                </div>
+                                
+                              </div>
+                         
+                             
+                              </form>
+                        
+                    
+                      <!-- end of row -->
+                
+                      </app-card>
+                      </div>
+                   
+                <!-- end of col-lg-12 -->
+              </div>
+                    <!-- end of row -->
+                  </div>
+                  <!-- end of edit-info -->
+                </div>
+                <!-- end of card-body -->
+              </div>
+              <!-- info card end -->
+            </div>
+          </ng-template>
+        </ngb-tab>
+        
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

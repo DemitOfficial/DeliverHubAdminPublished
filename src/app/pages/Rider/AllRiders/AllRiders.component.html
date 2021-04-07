@@ -1,0 +1,262 @@
+
+
+    <div class="row">
+      <div class="col-sm-12">
+<!-- Hover table card start -->
+<app-card [title]="'Riders'" [classHeader]="true" [blockClass]="'table-border-style'">
+ 
+  <div class="row">
+    <div class="col-sm-12" >
+     
+    </div>
+    <div class="col-sm-12" >
+      <div class="col-sm-2" style="float: right;padding-bottom: 8px;">
+        <select class="custom-select"#mySelect
+        (change)='onOptionsSelected(mySelect.value)' >
+          <option selected value="0">All</option>
+         <option value="1">Activated</option>
+         <option value="2">Not Activated</option>
+    
+        </select>
+        </div>
+      <div class="col-sm-2" style="float: right;">
+        <input type="text" class="form-control" [(ngModel)]="phone" (ngModelChange)="SearchRider()" placeholder="Enter Phone to search" >
+           
+         
+     </div>
+    </div>
+  </div>
+
+  <div class="table-responsive" style="padding:2%;">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th (click)="Sort('id')">#<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('riderName')">Rider Name<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('riderPhone')">Conrtact No<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('cnic')">CNIC<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('address')">Address<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('status')">Status<i class="fa fa-sort"></i></th>
+        <th (click)="Sort('action')">Action<i class="fa fa-sort"></i></th>
+        <!-- <th>Image</th> -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let obj of SearchListOfRiders |orderBy:key :reverse | paginate:{itemsPerPage:10,currentPage:p}; let i=index;" >
+        <td>{{i+1}}</td>
+        <td>{{obj.riderdata.riderName}}</td>
+        <td>{{obj.riderdata.riderPhone}}</td>
+        <td>{{obj.riderdata.cnic}}</td>
+        <td>{{obj.riderdata.address}}</td>
+        <td > <p *ngIf="obj.riderdata.isActivated" class="btn badge-success">Active</p>
+           <p *ngIf="!obj.riderdata.isActivated" class="btn badge-danger"> Not Active</p>   </td>
+
+           
+         <td > 
+          <h5 (click)="clickFunction(WarningContent,obj.riderdata.riderId)">
+           <p *ngIf="!obj.riderdata.isActivated" class="btn badge-success btn-xs">Activate Now</p>  <p *ngIf="obj.riderdata.isActivated" class="btn badge-danger"> Deactivate Now</p> &nbsp;
+          </h5>
+           <button class="btn  badge-default mb-2 mr-2 btn-xs" (click)="openVerticallyCentered(content)"> Detail</button>
+           <button class="btn  badge-default mb-2 mr-2 btn-xs" (click)="OpenDocumentsModal(Documentcontent,obj.riderdata.riderId)"> View Documents</button>
+           <button class="btn  badge-default mb-2 mr-2 btn-xs" (click)="OpenAreaAssigningModal(AssignAreacontent,obj.riderdata.riderId)"*ngIf="obj.serviceArea.areaID==0"> Assign Area</button>
+           <button class="btn  badge-default mb-2 mr-2 btn-xs" (click)="OpenAreaAssigningEditModal(EditAreacontent,obj.riderdata.riderId)"*ngIf="obj.serviceArea.areaID!=0"> Edit Area</button>
+        
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">{{obj.riderdata.riderName}}</h4>
+     
+      </div>
+      <div class="modal-body">
+        <div class="row">
+             <div class="col-md-5">
+                   <p>Area Name</p>
+             </div>
+             <div class="col-md-5">
+                      <p>{{obj.serviceArea?.areaName}}</p>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-5">
+                <p>Radious KM</p>
+          </div>
+          <div class="col-md-5">
+                   <p>{{obj.serviceArea?.radiusKilometer}}</p>
+         </div>
+     </div>
+    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+            
+          
+   
+  
+        </td>
+      </tr>
+ 
+    
+      </tbody>
+    </table>
+    <div class="row">
+      <div style="right: 10%;">
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+  </div>
+  </div>
+</app-card>
+<!-- Hover table card end -->
+      </div>
+    </div>
+
+   
+
+    <ng-template #Documentcontent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Documents</h4>
+     
+      </div>
+      <div class="modal-body">
+        <div class="row" >
+             <div class="col-md-2"*ngFor="let obj1 of documentdata">
+                   <img src={{imagebaseurl+obj1.imagepath}}/>
+             </div>
+             <div class="col-md-2">
+                    
+            </div>
+        </div>
+      
+    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <ng-template #AssignAreacontent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Assign Area TO Rider</h4>
+     
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" novalidate [formGroup]="RiderServiceArea">
+          <div class="form-row">
+            <div class="col-md-7 mb-3">
+              <label for="validationCustom01">Area Name</label>
+              <input type="text" class="form-control"   formControlName="Arename"  required>
+              
+            </div>
+    
+            <div class="col-md-5 mb-3">
+              <label for="validationCustom02">Latitude And Longitude</label>
+              <input type="text" class="form-control"  formControlName="latLong"  required>
+              <input type="hidden" class="form-control"  formControlName="areaID"  required>
+            </div>
+           
+          </div>
+          <div class="form-row">
+            <div class="col-md-5 mb-3">
+              <label for="validationCustomUsername">Radius Kilometers</label>
+              <div class="input-group">
+    
+                <input type="number" class="form-control"  formControlName="radiusKilometer"  required>
+                <input type="hidden" class="form-control"  placeholder="03xx-xxxxxxx"formControlName="riderID"   required>
+                
+              </div>
+            </div>
+          
+          </div>
+         
+         
+           
+        
+    
+          <button style="float: right;" class="btn btn-primary"(click)="saveArea()" type="submit">Submit</button>
+        </form>
+    
+       
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <ng-template #EditAreacontent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Assign Area TO Rider</h4>
+     
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" novalidate [formGroup]="RiderServiceArea">
+          <div class="form-row">
+            <div class="col-md-7 mb-3">
+              <label for="validationCustom01">Area Name</label>
+              <input type="text" class="form-control"   formControlName="Arename"  required>
+              
+            </div>
+    
+            <div class="col-md-5 mb-3">
+              <label for="validationCustom02">Latitude And Longitude</label>
+              <input type="text" class="form-control"  formControlName="latLong"  required>
+              <input type="hidden" class="form-control"  formControlName="areaID"  required>
+            </div>
+           
+          </div>
+          <div class="form-row">
+            <div class="col-md-5 mb-3">
+              <label for="validationCustomUsername">Radius Kilometers</label>
+              <div class="input-group">
+    
+                <input type="number" class="form-control"  formControlName="radiusKilometer"  required (ngModelChange)="radiuschange()">
+                <input type="hidden" class="form-control"  placeholder="03xx-xxxxxxx"formControlName="riderID"   required>
+                
+              </div>
+            </div>
+          
+          </div>
+         
+          <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <agm-map [zoom]="16" [latitude]="lat" [longitude]="lng" (centerChange)="getcenter($event)">
+                <agm-circle [latitude]="lt" [longitude]="ln" [fillColor]="'blue'"
+                [radius]="radiuskm"></agm-circle>
+                <agm-marker [latitude]="lt" [longitude]="ln" [markerDraggable]="false"></agm-marker>
+              </agm-map>
+            </div>
+          
+          </div>
+           
+        
+    
+          <button style="float: right;" class="btn btn-primary"(click)="saveArea()" type="submit">Submit</button>
+        </form>
+    
+       
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+    <ng-template #WarningContent let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Documents</h4>
+     
+      </div>
+      <div class="modal-body">
+        <div class="row" >
+             
+                   <label><strong><h1>Kindly Assign Area And Kilometers To Rider!!!</h1></strong></label>
+
+            
+        </div>
+      
+    
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
