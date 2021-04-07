@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-   apiurl:"https://deliveryhubauth.com/Api/",
+  apiurl:"https://deliveryhubauth.com/Api/",
  // apiurl:" https://localhost:44353/Api/",
   imagepath:"https://deliveryhubauth.com/Content/"
   //apiurl:"https://localhost:44313/Api/",
